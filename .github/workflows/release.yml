@@ -5,6 +5,12 @@ on:
     tags:
       - "v*.*.*"
 
+# The default GITHUB_TOKEN is read-only unless a workflow explicitly asks
+# for more -- creating a Release (and its auto-generated notes) needs write
+# access to repo contents.
+permissions:
+  contents: write
+
 jobs:
   audit_and_build_android:
     name: Audit + build signed Android release
