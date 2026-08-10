@@ -31,7 +31,10 @@ jobs:
         run: flutter analyze
 
       - name: Audit (test)
-        run: flutter test
+        # Golden tests are excluded here: they're pixel-exact and only
+        # guaranteed stable on the canonical Windows build machine used by
+        # scripts/build_release.ps1, not on this runner's OS/Flutter-patch.
+        run: flutter test --exclude-tags=golden
 
       - name: Decode signing keystore
         run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > android/upload-keystore.jks

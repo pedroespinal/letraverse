@@ -2,6 +2,16 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/). Versionado: `MAJOR.MINOR.PATCH+BUILD`.
 
+## [1.1.0+5] - 2026-08-10
+### Added
+- Golden tests (`test/golden/`) para la pantalla de juego y la de ajustes/estadísticas, como red de seguridad ante regresiones visuales. Corren como gate obligatorio en `scripts/build_release.ps1` (máquina de build canónica); excluidos del workflow de GitHub Actions vía el tag `golden`, ya que esos runners no garantizan rasterizado idéntico al de la máquina local.
+
+### Changed
+- `flutter_lints` actualizado de 5.0.0 a 6.0.0; corregido el único aviso nuevo (`unnecessary_underscores` en `settings_screen.dart`).
+
+### Audited
+- Auditoría completa: `flutter analyze` y `flutter test` sin hallazgos, build de verificación exitoso, paridad de claves ES/EN confirmada (87/87), bancos de palabras verificados contra el changelog (16 categorías × 60 palabras, sin duplicados), y credenciales de firma confirmadas fuera de git. `package_info_plus` 10.x y el resto de dependencias directas permanecen fijadas: requieren Dart SDK ≥3.10, mientras el SDK de Flutter usado (3.35.5) trae Dart 3.9.2.
+
 ## [1.1.0] - 2026-08-10
 ### Added
 - Bancos de palabras ampliados de 30 a 60 palabras por categoría (16 categorías, ES/EN).

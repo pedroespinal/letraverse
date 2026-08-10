@@ -1,0 +1,7 @@
+tags:
+  golden:
+    description: >-
+      Pixel golden tests. Reliable on the canonical Windows build machine
+      (scripts/build_release.ps1); excluded from GitHub Actions CI since
+      different OS/Flutter-patch combinations aren't guaranteed to
+      rasterize pixel-identically.
