@@ -84,12 +84,45 @@ Copy-Item "build\app\outputs\bundle\release\app-release.aab" (Join-Path $release
 Write-Host ""
 Write-Host "Listo. Version $newVersion compilada y firmada." -ForegroundColor Green
 Write-Host "Archivo versionado en: $releaseDir"
+
+Write-Step "7/7 Publicando en GitHub"
+# Standing rule: every build_release.ps1 run pushes to GitHub -- no
+# per-run confirmation. The tag always carries the build number (not just
+# major.minor.patch): UpdateChecker.isNewer compares both, so a tag
+# without it would never notify anyone already on this major.minor.patch.
+$tag = "v$maj.$min.$pat+$build"
+
+git add -A
+git diff --cached --quiet
+$hasStagedChanges = ($LASTEXITCODE -ne 0)
+if ($hasStagedChanges) {
+    git commit -m "chore: bump version to $newVersion"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Fallo al hacer commit. Publicacion abortada -- resuelve esto a mano." -ForegroundColor Red
+        exit 1
+    }
+} else {
+    Write-Host "Nada nuevo que commitear (aparte de lo ya commiteado)." -ForegroundColor Yellow
+}
+
+git tag $tag
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Fallo al crear el tag $tag (¿ya existe?). Publicacion abortada." -ForegroundColor Red
+    exit 1
+}
+
+git push origin main
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Fallo al pushear main. El tag $tag quedo creado localmente pero no se publico." -ForegroundColor Red
+    exit 1
+}
+
+git push origin $tag
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Fallo al pushear el tag $tag." -ForegroundColor Red
+    exit 1
+}
+
 Write-Host ""
-Write-Host "Siguiente paso sugerido:"
-Write-Host "  git add pubspec.yaml && git commit -m 'chore: bump version to $newVersion'"
-Write-Host "  git tag v$maj.$min.$pat+$build && git push origin main --tags"
-Write-Host ""
-Write-Host "El tag debe incluir '+$build': el chequeo de actualizaciones en la app" -ForegroundColor Yellow
-Write-Host "compara major.minor.patch Y build number (UpdateChecker.isNewer). Un tag" -ForegroundColor Yellow
-Write-Host "'v$maj.$min.$pat' sin el build nunca notificaria este release a quien ya" -ForegroundColor Yellow
-Write-Host "tenga instalada esa misma version." -ForegroundColor Yellow
+Write-Host "Publicado: commit + tag $tag pusheados a origin/main." -ForegroundColor Green
+Write-Host "Esto dispara el workflow de GitHub Actions que firma y publica el Release." -ForegroundColor Green
