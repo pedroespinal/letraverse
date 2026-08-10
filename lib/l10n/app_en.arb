@@ -1,0 +1,111 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "HiddenWords",
+  "appTagline": "Infinite Word Search",
+
+  "navPlay": "Play",
+  "navWorlds": "Worlds",
+  "navGuide": "Guide",
+  "navSettings": "Settings",
+
+  "playScreenTimer": "Time",
+  "playScreenWordsFound": "{found}/{total} words",
+  "@playScreenWordsFound": {
+    "placeholders": { "found": {"type": "int"}, "total": {"type": "int"} }
+  },
+  "playScreenWorldLabel": "World {n}",
+  "@playScreenWorldLabel": {
+    "placeholders": { "n": {"type": "int"} }
+  },
+  "playScreenLevelLabel": "Level {n} of {total}",
+  "@playScreenLevelLabel": {
+    "placeholders": { "n": {"type": "int"}, "total": {"type": "int"} }
+  },
+  "playScreenLevelComplete": "Level complete!",
+  "playScreenNextLevel": "Next level",
+  "playScreenNewWorldUnlocked": "New world unlocked: {name}!",
+  "@playScreenNewWorldUnlocked": {
+    "placeholders": { "name": {"type": "String"} }
+  },
+  "playScreenShuffle": "Shuffle filler letters",
+  "playScreenNoActiveLevel": "No active level",
+  "playScreenStartPlaying": "Start playing",
+
+  "worldsScreenTitle": "Infinite Worlds",
+  "worldsScreenSubtitle": "Every world brings a new theme. Finish one and the engine generates the next automatically.",
+  "worldsScreenLocked": "Locked",
+  "worldsScreenCompleted": "Completed",
+  "worldsScreenInProgress": "In progress",
+  "worldsScreenLevelsDone": "{done}/{total} levels",
+  "@worldsScreenLevelsDone": {
+    "placeholders": { "done": {"type": "int"}, "total": {"type": "int"} }
+  },
+  "worldsScreenPlay": "Play",
+
+  "categoryAnimals": "Animals",
+  "categoryFruits": "Fruits",
+  "categoryColors": "Colors",
+  "categoryCountries": "Countries",
+  "categorySports": "Sports",
+  "categoryProfessions": "Professions",
+  "categoryBody": "Human Body",
+  "categoryNature": "Nature",
+  "categoryTechnology": "Technology",
+  "categoryEmotions": "Emotions",
+  "categoryTransport": "Transport",
+  "categoryMusic": "Music",
+  "categoryFood": "Food",
+  "categoryClothing": "Clothing",
+  "categorySpace": "Space",
+  "categorySchool": "School",
+
+  "guideScreenTitle": "User Guide",
+  "guideHowToPlayTitle": "How to play",
+  "guideHowToPlayBody": "Drag your finger from the first to the last letter of a word hidden in the grid. It can run horizontally, vertically, or diagonally, forwards or backwards once you unlock that difficulty. Find every word on the list to complete the level.",
+  "guideWorldsTitle": "Infinite worlds",
+  "guideWorldsBody": "Each world groups 8 levels around one theme. As you approach the end of your unlocked worlds, the app generates the next one automatically: a new theme, a bigger grid, more words. It never runs out.",
+  "guideLangThemeTitle": "Language and theme",
+  "guideLangThemeBody": "Switch language (Español/English) and theme (light/dark) anytime from Settings. Your letters always stay legible in both modes.",
+  "guideUpdatesTitle": "Updates",
+  "guideUpdatesBody": "The app checks GitHub Releases on launch. If a new version exists, it offers a button to download and install it (Android) or open the download page (iOS).",
+
+  "settingsScreenTitle": "Settings",
+  "settingsLanguage": "Language",
+  "settingsLanguageSpanish": "Español",
+  "settingsLanguageEnglish": "English",
+  "settingsLanguageSystem": "Automatic",
+  "settingsTheme": "Theme",
+  "settingsThemeLight": "Light",
+  "settingsThemeDark": "Dark",
+  "settingsThemeSystem": "Automatic",
+  "settingsAbout": "About",
+  "settingsAboutVersion": "Version {version} (build {build})",
+  "@settingsAboutVersion": {
+    "placeholders": { "version": {"type": "String"}, "build": {"type": "String"} }
+  },
+  "settingsAboutGenesis": "App created on {date}",
+  "@settingsAboutGenesis": {
+    "placeholders": { "date": {"type": "String"} }
+  },
+  "settingsCheckUpdates": "Check for updates",
+  "settingsResetProgress": "Reset progress",
+  "settingsResetProgressConfirm": "Are you sure you want to erase all your progress? This cannot be undone.",
+
+  "updateAvailableTitle": "Update available",
+  "updateAvailableBody": "A new version ({version}) of HiddenWords is available.",
+  "@updateAvailableBody": {
+    "placeholders": { "version": {"type": "String"} }
+  },
+  "updateDownloadInstall": "Download & install",
+  "updateOpenReleasePage": "Open download page",
+  "updateLater": "Later",
+  "updateDownloading": "Downloading update…",
+  "updateUpToDate": "You're on the latest version",
+
+  "commonCancel": "Cancel",
+  "commonConfirm": "Confirm",
+  "commonClose": "Close",
+
+  "footerCredit": "Created by: Pedro Espinal — All rights reserved © 2026"
+}

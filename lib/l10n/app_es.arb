@@ -1,0 +1,111 @@
+{
+  "@@locale": "es",
+
+  "appTitle": "HiddenWords",
+  "appTagline": "Sopa de Letras Infinita",
+
+  "navPlay": "Jugar",
+  "navWorlds": "Mundos",
+  "navGuide": "Guía",
+  "navSettings": "Ajustes",
+
+  "playScreenTimer": "Tiempo",
+  "playScreenWordsFound": "{found}/{total} palabras",
+  "@playScreenWordsFound": {
+    "placeholders": { "found": {"type": "int"}, "total": {"type": "int"} }
+  },
+  "playScreenWorldLabel": "Mundo {n}",
+  "@playScreenWorldLabel": {
+    "placeholders": { "n": {"type": "int"} }
+  },
+  "playScreenLevelLabel": "Nivel {n} de {total}",
+  "@playScreenLevelLabel": {
+    "placeholders": { "n": {"type": "int"}, "total": {"type": "int"} }
+  },
+  "playScreenLevelComplete": "¡Nivel completado!",
+  "playScreenNextLevel": "Siguiente nivel",
+  "playScreenNewWorldUnlocked": "¡Nuevo mundo desbloqueado: {name}!",
+  "@playScreenNewWorldUnlocked": {
+    "placeholders": { "name": {"type": "String"} }
+  },
+  "playScreenShuffle": "Mezclar letras señuelo",
+  "playScreenNoActiveLevel": "No hay un nivel activo",
+  "playScreenStartPlaying": "Empezar a jugar",
+
+  "worldsScreenTitle": "Mundos Infinitos",
+  "worldsScreenSubtitle": "Cada mundo trae un tema nuevo. Al terminar uno, el motor genera el siguiente automáticamente.",
+  "worldsScreenLocked": "Bloqueado",
+  "worldsScreenCompleted": "Completado",
+  "worldsScreenInProgress": "En progreso",
+  "worldsScreenLevelsDone": "{done}/{total} niveles",
+  "@worldsScreenLevelsDone": {
+    "placeholders": { "done": {"type": "int"}, "total": {"type": "int"} }
+  },
+  "worldsScreenPlay": "Jugar",
+
+  "categoryAnimals": "Animales",
+  "categoryFruits": "Frutas",
+  "categoryColors": "Colores",
+  "categoryCountries": "Países",
+  "categorySports": "Deportes",
+  "categoryProfessions": "Profesiones",
+  "categoryBody": "Cuerpo Humano",
+  "categoryNature": "Naturaleza",
+  "categoryTechnology": "Tecnología",
+  "categoryEmotions": "Emociones",
+  "categoryTransport": "Transporte",
+  "categoryMusic": "Música",
+  "categoryFood": "Comida",
+  "categoryClothing": "Ropa",
+  "categorySpace": "Espacio",
+  "categorySchool": "Escuela",
+
+  "guideScreenTitle": "Guía de Usuario",
+  "guideHowToPlayTitle": "Cómo jugar",
+  "guideHowToPlayBody": "Arrastra el dedo desde la primera hasta la última letra de una palabra oculta en la grilla. Puede estar en horizontal, vertical o diagonal, y hacia adelante o hacia atrás una vez que desbloquees esa dificultad. Encuentra todas las palabras de la lista para completar el nivel.",
+  "guideWorldsTitle": "Mundos infinitos",
+  "guideWorldsBody": "Cada mundo agrupa 8 niveles con un mismo tema. Al acercarte al final de tus mundos desbloqueados, la app genera el siguiente automáticamente: nuevo tema, grilla más grande y más palabras. Nunca se acaban.",
+  "guideLangThemeTitle": "Idioma y tema",
+  "guideLangThemeBody": "Cambia el idioma (Español/English) y el tema (claro/oscuro) en cualquier momento desde Ajustes. Tus letras siempre se mantienen legibles en ambos modos.",
+  "guideUpdatesTitle": "Actualizaciones",
+  "guideUpdatesBody": "La app revisa GitHub Releases al abrirse. Si hay una versión nueva, te avisa con un botón para descargarla e instalarla (Android) o abrir la página de descarga (iOS).",
+
+  "settingsScreenTitle": "Ajustes",
+  "settingsLanguage": "Idioma",
+  "settingsLanguageSpanish": "Español",
+  "settingsLanguageEnglish": "English",
+  "settingsLanguageSystem": "Automático",
+  "settingsTheme": "Tema",
+  "settingsThemeLight": "Claro",
+  "settingsThemeDark": "Oscuro",
+  "settingsThemeSystem": "Automático",
+  "settingsAbout": "Acerca de",
+  "settingsAboutVersion": "Versión {version} (build {build})",
+  "@settingsAboutVersion": {
+    "placeholders": { "version": {"type": "String"}, "build": {"type": "String"} }
+  },
+  "settingsAboutGenesis": "Aplicación creada el {date}",
+  "@settingsAboutGenesis": {
+    "placeholders": { "date": {"type": "String"} }
+  },
+  "settingsCheckUpdates": "Buscar actualizaciones",
+  "settingsResetProgress": "Reiniciar progreso",
+  "settingsResetProgressConfirm": "¿Seguro que quieres borrar todo tu progreso? Esta acción no se puede deshacer.",
+
+  "updateAvailableTitle": "Actualización disponible",
+  "updateAvailableBody": "Hay una nueva versión ({version}) de HiddenWords disponible.",
+  "@updateAvailableBody": {
+    "placeholders": { "version": {"type": "String"} }
+  },
+  "updateDownloadInstall": "Descargar e instalar",
+  "updateOpenReleasePage": "Abrir página de descarga",
+  "updateLater": "Más tarde",
+  "updateDownloading": "Descargando actualización…",
+  "updateUpToDate": "Ya tienes la última versión",
+
+  "commonCancel": "Cancelar",
+  "commonConfirm": "Confirmar",
+  "commonClose": "Cerrar",
+
+  "footerCredit": "Creado por: Pedro Espinal — Todos los derechos reservados © 2026"
+}

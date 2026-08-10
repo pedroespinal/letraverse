@@ -1,0 +1,91 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  audit_and_build_android:
+    name: Audit + build signed Android release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+
+      # The same audit gate as scripts/build_release.ps1 -- nothing compiles
+      # if this fails.
+      - name: Audit (analyze)
+        run: flutter analyze
+
+      - name: Audit (test)
+        run: flutter test
+
+      - name: Decode signing keystore
+        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > android/upload-keystore.jks
+
+      - name: Write key.properties
+        run: |
+          cat > android/key.properties <<EOF
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+          storeFile=upload-keystore.jks
+          EOF
+
+      - name: Build APK (release, signed)
+        run: flutter build apk --release
+
+      - name: Build App Bundle (release, signed)
+        run: flutter build appbundle --release
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-release
+          path: |
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/bundle/release/app-release.aab
+          retention-days: 90
+
+  build_ios_structural:
+    name: iOS structural build (unsigned)
+    runs-on: macos-latest
+    # Real code signing needs an Apple Developer Program membership, which
+    # this project doesn't have yet. This job only proves the iOS build
+    # still compiles; it is not a publishable artifact.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+      - run: flutter build ios --release --no-codesign
+
+  create_release:
+    name: Publish GitHub Release
+    needs: [audit_and_build_android, build_ios_structural]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: android-release
+          path: dist
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/flutter-apk/app-release.apk
+            dist/bundle/release/app-release.aab
+          generate_release_notes: true
