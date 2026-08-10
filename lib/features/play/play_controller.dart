@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
 import '../../core/providers.dart';
+import '../../core/sound_service.dart';
 import '../../domain/models/puzzle.dart';
 import '../../domain/world_generator.dart';
 import 'selection_path.dart';
@@ -114,6 +115,9 @@ class PlayController extends StateNotifier<PlayState> {
           sameCellSequence(state.selection, cells.reversed.toList())) {
         final updatedFound = {...state.foundWords, placed.word};
         state = state.copyWith(foundWords: updatedFound, selection: const []);
+        _ref.read(soundServiceProvider).wordFound();
+        _ref.read(statsRepositoryProvider).recordWordFound();
+        _ref.read(statsRevisionProvider.notifier).state++;
         if (updatedFound.length == puzzle.words.length) {
           _completeLevel();
         }
@@ -130,6 +134,9 @@ class PlayController extends StateNotifier<PlayState> {
     final progress = _ref.read(progressRepositoryProvider);
     await progress.markLevelComplete(puzzle.levelIndex);
     _ref.read(progressRevisionProvider.notifier).state++;
+    await _ref.read(statsRepositoryProvider).recordLevelCompleted(state.elapsed);
+    _ref.read(statsRevisionProvider.notifier).state++;
+    _ref.read(soundServiceProvider).levelComplete();
     state = state.copyWith(isComplete: true);
   }
 

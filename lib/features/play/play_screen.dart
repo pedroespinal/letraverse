@@ -87,7 +87,23 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
             ),
             const SizedBox(height: 4),
             Text(l10n.playScreenWordsFound(state.foundWords.length, puzzle.words.length)),
-            const SizedBox(height: 12),
+            const SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(Icons.touch_app_outlined, size: 14, color: colors.tileText.withValues(alpha: 0.55)),
+                const SizedBox(width: 4),
+                Expanded(
+                  child: Text(
+                    l10n.playScreenSelectionHint,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: colors.tileText.withValues(alpha: 0.55),
+                        ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
             // Both the grid and the word list live inside this Expanded so
             // they always share whatever vertical space is actually left,
             // however tall the header above happens to be — an AspectRatio

@@ -18,6 +18,8 @@ class SettingsScreen extends ConsumerWidget {
     final locale = ref.watch(localeProvider);
     final packageInfoAsync = ref.watch(packageInfoProvider);
     final langCode = Localizations.localeOf(context).languageCode;
+    ref.watch(statsRevisionProvider);
+    final stats = ref.watch(statsRepositoryProvider);
 
     Future<void> setLocale(Locale? next) async {
       ref.read(localeProvider.notifier).state = next;
@@ -75,6 +77,26 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           _SectionCard(
+            title: l10n.statsTitle,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _StatRow(icon: Icons.text_fields, label: l10n.statsWordsFound, value: '${stats.totalWordsFound}'),
+                _StatRow(icon: Icons.check_circle_outline, label: l10n.statsLevelsCompleted, value: '${stats.totalLevelsCompleted}'),
+                _StatRow(icon: Icons.local_fire_department_outlined, label: l10n.statsStreak, value: l10n.statsStreakDays(stats.currentStreak)),
+                _StatRow(icon: Icons.timer_outlined, label: l10n.statsPlayTime, value: _formatPlaySeconds(stats.totalPlaySeconds)),
+                if (stats.bestStreak > stats.currentStreak) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    l10n.statsBestStreak(stats.bestStreak),
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          _SectionCard(
             title: l10n.settingsAbout,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +149,39 @@ class SettingsScreen extends ConsumerWidget {
     if (confirmed == true) {
       await ref.read(progressRepositoryProvider).resetAll();
       ref.read(progressRevisionProvider.notifier).state++;
+      await ref.read(statsRepositoryProvider).resetAll();
+      ref.read(statsRevisionProvider.notifier).state++;
     }
+  }
+}
+
+String _formatPlaySeconds(int totalSeconds) {
+  final hours = totalSeconds ~/ 3600;
+  final minutes = (totalSeconds % 3600) ~/ 60;
+  if (hours > 0) return '${hours}h ${minutes}m';
+  return '${minutes}m';
+}
+
+class _StatRow extends StatelessWidget {
+  const _StatRow({required this.icon, required this.label, required this.value});
+
+  final IconData icon;
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        children: [
+          Icon(icon, size: 18, color: Theme.of(context).colorScheme.primary),
+          const SizedBox(width: 10),
+          Expanded(child: Text(label)),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.w700)),
+        ],
+      ),
+    );
   }
 }
 

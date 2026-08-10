@@ -7,6 +7,7 @@ import 'app.dart';
 import 'core/providers.dart';
 import 'data/progress_repository.dart';
 import 'data/settings_repository.dart';
+import 'data/stats_repository.dart';
 import 'domain/word_bank_repository.dart';
 
 Future<void> main() async {
@@ -17,6 +18,7 @@ Future<void> main() async {
 
   await Hive.initFlutter();
   final progressBox = await Hive.openBox<dynamic>('progress');
+  final statsBox = await Hive.openBox<dynamic>('stats');
 
   final prefs = await SharedPreferences.getInstance();
 
@@ -26,6 +28,7 @@ Future<void> main() async {
         wordBankRepositoryProvider.overrideWithValue(wordBanks),
         progressRepositoryProvider.overrideWithValue(ProgressRepository(progressBox)),
         settingsRepositoryProvider.overrideWithValue(SettingsRepository(prefs)),
+        statsRepositoryProvider.overrideWithValue(StatsRepository(statsBox)),
       ],
       child: const HiddenWordsApp(),
     ),

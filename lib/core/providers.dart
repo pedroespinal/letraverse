@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/legacy.dart';
 
 import '../data/progress_repository.dart';
 import '../data/settings_repository.dart';
+import '../data/stats_repository.dart';
 import '../domain/word_bank_repository.dart';
 import '../domain/world_generator.dart';
 
@@ -22,6 +23,13 @@ final progressRepositoryProvider = Provider<ProgressRepository>(
 final settingsRepositoryProvider = Provider<SettingsRepository>(
   (ref) => throw UnimplementedError('settingsRepositoryProvider must be overridden in main()'),
 );
+
+final statsRepositoryProvider = Provider<StatsRepository>(
+  (ref) => throw UnimplementedError('statsRepositoryProvider must be overridden in main()'),
+);
+
+/// Bumped whenever stats change so widgets watching them rebuild.
+final statsRevisionProvider = StateProvider<int>((ref) => 0);
 
 final worldGeneratorProvider = Provider<WorldGenerator>(
   (ref) => WorldGenerator(ref.watch(wordBankRepositoryProvider)),

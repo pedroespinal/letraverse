@@ -31,6 +31,17 @@
   "playScreenShuffle": "Shuffle filler letters",
   "playScreenNoActiveLevel": "No active level",
   "playScreenStartPlaying": "Start playing",
+  "playScreenSelectionHint": "Drag, or tap the first and last letter",
+  "playScreenCellLabel": "Letter {letter}, row {row}, column {col}",
+  "@playScreenCellLabel": {
+    "placeholders": { "letter": {"type": "String"}, "row": {"type": "int"}, "col": {"type": "int"} }
+  },
+  "playScreenCellFound": "word found",
+  "playScreenCellSelected": "selected",
+  "playScreenBoardLabel": "Word search board, {size} by {size}",
+  "@playScreenBoardLabel": {
+    "placeholders": { "size": {"type": "int"} }
+  },
 
   "worldsScreenTitle": "Infinite Worlds",
   "worldsScreenSubtitle": "Every world brings a new theme. Finish one and the engine generates the next automatically.",
@@ -89,6 +100,21 @@
     "placeholders": { "date": {"type": "String"} }
   },
   "settingsCheckUpdates": "Check for updates",
+
+  "statsTitle": "Statistics",
+  "statsWordsFound": "Words found",
+  "statsLevelsCompleted": "Levels completed",
+  "statsStreak": "Current streak",
+  "statsStreakDays": "{days} days",
+  "@statsStreakDays": {
+    "placeholders": { "days": {"type": "int"} }
+  },
+  "statsBestStreak": "Best streak: {days} days",
+  "@statsBestStreak": {
+    "placeholders": { "days": {"type": "int"} }
+  },
+  "statsPlayTime": "Time played",
+
   "settingsResetProgress": "Reset progress",
   "settingsResetProgressConfirm": "Are you sure you want to erase all your progress? This cannot be undone.",
 

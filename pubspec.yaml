@@ -48,6 +48,7 @@ dependencies:
   intl: 0.20.2
   flutter_localizations:
     sdk: flutter
+  audioplayers: ^6.7.1
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +81,7 @@ flutter:
     - assets/wordbanks/es/
     - assets/wordbanks/en/
     - assets/icon/
+    - assets/sounds/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

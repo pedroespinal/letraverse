@@ -11,6 +11,7 @@ import 'package:hiddenwords/app.dart';
 import 'package:hiddenwords/core/providers.dart';
 import 'package:hiddenwords/data/progress_repository.dart';
 import 'package:hiddenwords/data/settings_repository.dart';
+import 'package:hiddenwords/data/stats_repository.dart';
 import 'package:hiddenwords/domain/word_bank_repository.dart';
 import 'package:hiddenwords/features/play/widgets/letter_grid.dart';
 import 'package:hiddenwords/widgets/app_footer.dart';
@@ -61,6 +62,7 @@ void main() {
     // environment. `bytes:` makes Hive use its in-memory backend instead, so
     // no disk/file-lock syscall is ever made.
     final progressBox = await Hive.openBox<dynamic>('progress', bytes: Uint8List(0));
+    final statsBox = await Hive.openBox<dynamic>('stats', bytes: Uint8List(0));
     final prefs = await SharedPreferences.getInstance();
 
     await tester.pumpWidget(
@@ -69,6 +71,7 @@ void main() {
           wordBankRepositoryProvider.overrideWithValue(wordBanks),
           progressRepositoryProvider.overrideWithValue(ProgressRepository(progressBox)),
           settingsRepositoryProvider.overrideWithValue(SettingsRepository(prefs)),
+          statsRepositoryProvider.overrideWithValue(StatsRepository(statsBox)),
           autoUpdateCheckEnabledProvider.overrideWithValue(false),
         ],
         child: const HiddenWordsApp(),

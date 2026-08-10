@@ -31,6 +31,17 @@
   "playScreenShuffle": "Mezclar letras señuelo",
   "playScreenNoActiveLevel": "No hay un nivel activo",
   "playScreenStartPlaying": "Empezar a jugar",
+  "playScreenSelectionHint": "Arrastra, o toca la primera y la última letra",
+  "playScreenCellLabel": "Letra {letter}, fila {row}, columna {col}",
+  "@playScreenCellLabel": {
+    "placeholders": { "letter": {"type": "String"}, "row": {"type": "int"}, "col": {"type": "int"} }
+  },
+  "playScreenCellFound": "palabra encontrada",
+  "playScreenCellSelected": "seleccionada",
+  "playScreenBoardLabel": "Tablero de sopa de letras, {size} por {size}",
+  "@playScreenBoardLabel": {
+    "placeholders": { "size": {"type": "int"} }
+  },
 
   "worldsScreenTitle": "Mundos Infinitos",
   "worldsScreenSubtitle": "Cada mundo trae un tema nuevo. Al terminar uno, el motor genera el siguiente automáticamente.",
@@ -89,6 +100,21 @@
     "placeholders": { "date": {"type": "String"} }
   },
   "settingsCheckUpdates": "Buscar actualizaciones",
+
+  "statsTitle": "Estadísticas",
+  "statsWordsFound": "Palabras encontradas",
+  "statsLevelsCompleted": "Niveles completados",
+  "statsStreak": "Racha actual",
+  "statsStreakDays": "{days} días",
+  "@statsStreakDays": {
+    "placeholders": { "days": {"type": "int"} }
+  },
+  "statsBestStreak": "Mejor racha: {days} días",
+  "@statsBestStreak": {
+    "placeholders": { "days": {"type": "int"} }
+  },
+  "statsPlayTime": "Tiempo jugado",
+
   "settingsResetProgress": "Reiniciar progreso",
   "settingsResetProgressConfirm": "¿Seguro que quieres borrar todo tu progreso? Esta acción no se puede deshacer.",
 

@@ -65,6 +65,26 @@ class AppLocalizationsEs extends AppLocalizations {
   String get playScreenStartPlaying => 'Empezar a jugar';
 
   @override
+  String get playScreenSelectionHint =>
+      'Arrastra, o toca la primera y la última letra';
+
+  @override
+  String playScreenCellLabel(String letter, int row, int col) {
+    return 'Letra $letter, fila $row, columna $col';
+  }
+
+  @override
+  String get playScreenCellFound => 'palabra encontrada';
+
+  @override
+  String get playScreenCellSelected => 'seleccionada';
+
+  @override
+  String playScreenBoardLabel(int size) {
+    return 'Tablero de sopa de letras, $size por $size';
+  }
+
+  @override
   String get worldsScreenTitle => 'Mundos Infinitos';
 
   @override
@@ -209,6 +229,31 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsCheckUpdates => 'Buscar actualizaciones';
+
+  @override
+  String get statsTitle => 'Estadísticas';
+
+  @override
+  String get statsWordsFound => 'Palabras encontradas';
+
+  @override
+  String get statsLevelsCompleted => 'Niveles completados';
+
+  @override
+  String get statsStreak => 'Racha actual';
+
+  @override
+  String statsStreakDays(int days) {
+    return '$days días';
+  }
+
+  @override
+  String statsBestStreak(int days) {
+    return 'Mejor racha: $days días';
+  }
+
+  @override
+  String get statsPlayTime => 'Tiempo jugado';
 
   @override
   String get settingsResetProgress => 'Reiniciar progreso';

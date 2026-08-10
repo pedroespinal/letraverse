@@ -194,6 +194,36 @@ abstract class AppLocalizations {
   /// **'Empezar a jugar'**
   String get playScreenStartPlaying;
 
+  /// No description provided for @playScreenSelectionHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Arrastra, o toca la primera y la última letra'**
+  String get playScreenSelectionHint;
+
+  /// No description provided for @playScreenCellLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Letra {letter}, fila {row}, columna {col}'**
+  String playScreenCellLabel(String letter, int row, int col);
+
+  /// No description provided for @playScreenCellFound.
+  ///
+  /// In es, this message translates to:
+  /// **'palabra encontrada'**
+  String get playScreenCellFound;
+
+  /// No description provided for @playScreenCellSelected.
+  ///
+  /// In es, this message translates to:
+  /// **'seleccionada'**
+  String get playScreenCellSelected;
+
+  /// No description provided for @playScreenBoardLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Tablero de sopa de letras, {size} por {size}'**
+  String playScreenBoardLabel(int size);
+
   /// No description provided for @worldsScreenTitle.
   ///
   /// In es, this message translates to:
@@ -463,6 +493,48 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Buscar actualizaciones'**
   String get settingsCheckUpdates;
+
+  /// No description provided for @statsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Estadísticas'**
+  String get statsTitle;
+
+  /// No description provided for @statsWordsFound.
+  ///
+  /// In es, this message translates to:
+  /// **'Palabras encontradas'**
+  String get statsWordsFound;
+
+  /// No description provided for @statsLevelsCompleted.
+  ///
+  /// In es, this message translates to:
+  /// **'Niveles completados'**
+  String get statsLevelsCompleted;
+
+  /// No description provided for @statsStreak.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha actual'**
+  String get statsStreak;
+
+  /// No description provided for @statsStreakDays.
+  ///
+  /// In es, this message translates to:
+  /// **'{days} días'**
+  String statsStreakDays(int days);
+
+  /// No description provided for @statsBestStreak.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejor racha: {days} días'**
+  String statsBestStreak(int days);
+
+  /// No description provided for @statsPlayTime.
+  ///
+  /// In es, this message translates to:
+  /// **'Tiempo jugado'**
+  String get statsPlayTime;
 
   /// No description provided for @settingsResetProgress.
   ///
