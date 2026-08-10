@@ -2,6 +2,18 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/). Versionado: `MAJOR.MINOR.PATCH+BUILD`.
 
+## [1.1.0] - 2026-08-10
+### Added
+- Bancos de palabras ampliados de 30 a 60 palabras por categoría (16 categorías, ES/EN).
+- Feedback háptico y de sonido (tonos generados localmente, sin assets externos) al encontrar una palabra o completar un nivel.
+- Accesibilidad: selección alternativa tocando la primera y última letra (sin necesidad de arrastrar), etiquetas Semantics en cada celda para TalkBack/VoiceOver, y una pista visible de cómo seleccionar.
+- Estadísticas: palabras encontradas, niveles completados, racha diaria (con mejor racha) y tiempo total jugado, visibles en Ajustes.
+- Política de privacidad bilingüe (`PRIVACY_POLICY.md`), enlazada desde Ajustes.
+- Capturas de pantalla reales en `store/screenshots/` para futuras publicaciones en tiendas.
+
+### Changed
+- Renombrado del proyecto de "HiddenWords" a **Letraverse**: paquete Dart, `applicationId`/bundle ID, y repositorio de GitHub actualizados en consecuencia.
+
 ## [1.0.0] - 2026-08-10
 ### Added
 - Motor de generación procedural de mundos infinitos (`WorldGenerator` + `GridPlacer`), determinista por semilla.
