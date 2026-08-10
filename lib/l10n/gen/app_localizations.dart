@@ -266,6 +266,18 @@ abstract class AppLocalizations {
   /// **'Jugar'**
   String get worldsScreenPlay;
 
+  /// No description provided for @worldsScreenPickCategory.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige una categoría'**
+  String get worldsScreenPickCategory;
+
+  /// No description provided for @worldsScreenPickCategorySubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Salta directo a la que quieras jugar, sin esperar a desbloquearla.'**
+  String get worldsScreenPickCategorySubtitle;
+
   /// No description provided for @categoryAnimals.
   ///
   /// In es, this message translates to:

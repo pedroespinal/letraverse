@@ -68,11 +68,7 @@ class WorldGenerator {
     final difficulty = difficultyFor(worldIndex, levelInWorld);
     final levelIndex = globalLevelIndex(worldIndex, levelInWorld);
 
-    final allWords = _wordBanks.wordsFor(meta.categoryId, langCode);
-    final eligible = allWords.where((w) => w.length <= difficulty.gridSize).toList()
-      ..shuffle(Random(levelIndex));
-    final targetCount = min(difficulty.wordCount, eligible.length);
-    final selected = eligible.take(max(targetCount, 1)).toList();
+    final selected = _selectWords(meta, worldIndex, levelInWorld, langCode);
 
     final filler = langCode == 'es' ? fillerAlphabetEs : fillerAlphabetEn;
     final placement = const GridPlacer().generate(
@@ -99,5 +95,61 @@ class WorldGenerator {
     if (value < min) return min;
     if (value > max) return max;
     return value;
+  }
+
+  /// Deals words from a per-category, per-cycle shuffled deck instead of
+  /// resampling the category independently every level -- independent
+  /// random draws from the same ~60-word category frequently overlap, so
+  /// the same handful of words kept resurfacing level after level.
+  /// Walking a shared deck forward means every word in the category gets
+  /// used once before any of them repeat; a fresh reshuffle only happens
+  /// once the deck wraps, or when the player reaches this category again
+  /// on a later cycle.
+  ///
+  /// The deck cursor has to be derived by actually re-walking every prior
+  /// level in this world (not just summing their wordCounts): a level
+  /// skips over deck words too long for its grid without consuming a
+  /// wordCount "slot" for them, so the number of deck *positions* it
+  /// passes through is usually more than the number of words it selects.
+  /// Using wordCount alone as the increment under-advances the cursor and
+  /// reintroduces the very overlap this is meant to avoid.
+  List<String> _selectWords(
+    WorldMeta meta,
+    int worldIndex,
+    int levelInWorld,
+    String langCode,
+  ) {
+    // Seeded via plain arithmetic on cycle/posInCycle, deliberately *not*
+    // categoryId.hashCode or Object.hash(...): both are randomized
+    // per-isolate by the Dart VM (hash-flood mitigation applies to
+    // Object.hash's int overloads too, not just String.hashCode), so
+    // either would reshuffle the deck differently on every app launch,
+    // breaking the "same seed in, same puzzle out" guarantee this whole
+    // engine exists to provide. Same trick _shuffledCategoriesForCycle
+    // already uses above.
+    final deck = [..._wordBanks.wordsFor(meta.categoryId, langCode)]
+      ..shuffle(Random(meta.cycle * 104729 + meta.posInCycle));
+    if (deck.isEmpty) return const [];
+
+    var cursor = 0;
+    var selected = const <String>[];
+    for (var level = 0; level <= levelInWorld; level++) {
+      final difficulty = difficultyFor(worldIndex, level);
+      final picked = <String>[];
+      var step = 0;
+      for (; step < deck.length && picked.length < difficulty.wordCount; step++) {
+        final word = deck[(cursor + step) % deck.length];
+        if (word.length <= difficulty.gridSize) picked.add(word);
+      }
+      cursor = (cursor + step) % deck.length;
+      selected = picked;
+    }
+
+    if (selected.isEmpty) {
+      // Nothing in the category fits this grid size -- fall back to the
+      // shortest word so the level can still be generated.
+      selected = [deck.reduce((a, b) => a.length <= b.length ? a : b)];
+    }
+    return selected;
   }
 }

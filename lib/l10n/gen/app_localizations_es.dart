@@ -109,6 +109,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get worldsScreenPlay => 'Jugar';
 
   @override
+  String get worldsScreenPickCategory => 'Elige una categoría';
+
+  @override
+  String get worldsScreenPickCategorySubtitle =>
+      'Salta directo a la que quieras jugar, sin esperar a desbloquearla.';
+
+  @override
   String get categoryAnimals => 'Animales';
 
   @override

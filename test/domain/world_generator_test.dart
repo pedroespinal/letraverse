@@ -85,4 +85,63 @@ void main() {
       expect(curr.wordCount, greaterThanOrEqualTo(prev.wordCount));
     }
   });
+
+  test('back-to-back early levels in the same world never repeat a word', () {
+    for (final lang in ['es', 'en']) {
+      final level0 = generator.buildPuzzle(worldIndex: 0, levelInWorld: 0, langCode: lang);
+      final level1 = generator.buildPuzzle(worldIndex: 0, levelInWorld: 1, langCode: lang);
+      expect(level0.words.toSet().intersection(level1.words.toSet()), isEmpty,
+          reason: '$lang: level 1 repeated a word already used in level 0');
+    }
+  });
+
+  test('a world exhausts most of the category before any word repeats', () {
+    for (final lang in ['es', 'en']) {
+      final categorySize = repo.wordsFor(generator.worldMetaFor(0).categoryId, lang).length;
+      final seenSoFar = <String>{};
+      var firstRepeatAtDistinctCount = -1;
+      for (var levelInWorld = 0; levelInWorld < WorldGenerator.levelsPerWorld; levelInWorld++) {
+        final puzzle = generator.buildPuzzle(worldIndex: 0, levelInWorld: levelInWorld, langCode: lang);
+        for (final word in puzzle.words) {
+          if (seenSoFar.contains(word) && firstRepeatAtDistinctCount == -1) {
+            firstRepeatAtDistinctCount = seenSoFar.length;
+          }
+          seenSoFar.add(word);
+        }
+      }
+      // Once the deck wraps around, repeats are expected -- but only after
+      // most of the category's words have already appeared once. (Spanish
+      // words tend to run longer than their English counterparts, so more
+      // of them get skipped at the smallest grid sizes -- the threshold
+      // stays modest enough to hold for both languages.)
+      final threshold = (categorySize * 0.5).floor();
+      expect(
+        firstRepeatAtDistinctCount == -1 || firstRepeatAtDistinctCount >= threshold,
+        isTrue,
+        reason: '$lang repeated a word after only $firstRepeatAtDistinctCount/$categorySize distinct words',
+      );
+    }
+  });
+
+  test('revisiting a category on a later cycle reshuffles its word order', () {
+    final targetCategory = generator.worldMetaFor(0).categoryId;
+    final categoryCount = repo.categoryIds.length;
+
+    // Find whichever world in cycle 1 maps back to the same category as
+    // world 0 (cycle 1 uses its own shuffled category order, so it won't
+    // necessarily be worldIndex == categoryCount).
+    int? cycle1World;
+    for (var w = categoryCount; w < categoryCount * 2; w++) {
+      if (generator.worldMetaFor(w).categoryId == targetCategory) {
+        cycle1World = w;
+        break;
+      }
+    }
+    expect(cycle1World, isNotNull);
+
+    final firstCycleWords = generator.buildPuzzle(worldIndex: 0, levelInWorld: 0, langCode: 'en').words;
+    final laterCycleWords =
+        generator.buildPuzzle(worldIndex: cycle1World!, levelInWorld: 0, langCode: 'en').words;
+    expect(firstCycleWords, isNot(equals(laterCycleWords)));
+  });
 }

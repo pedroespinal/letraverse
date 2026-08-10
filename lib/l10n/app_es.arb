@@ -53,6 +53,8 @@
     "placeholders": { "done": {"type": "int"}, "total": {"type": "int"} }
   },
   "worldsScreenPlay": "Jugar",
+  "worldsScreenPickCategory": "Elige una categoría",
+  "worldsScreenPickCategorySubtitle": "Salta directo a la que quieras jugar, sin esperar a desbloquearla.",
 
   "categoryAnimals": "Animales",
   "categoryFruits": "Frutas",

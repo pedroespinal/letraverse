@@ -2,6 +2,17 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/). Versionado: `MAJOR.MINOR.PATCH+BUILD`.
 
+## [1.1.0+8] - 2026-08-10
+### Fixed
+- Las palabras ya no se repiten level tras level dentro de un mismo mundo: antes, cada nivel resampleaba la categoría de forma independiente (60 palabras, 6-22 por nivel), así que era estadísticamente casi seguro que se repitieran desde el segundo nivel. Ahora cada mundo reparte de un mazo barajado por categoría, avanzando el cursor nivel a nivel, así que la categoría se agota casi por completo antes de que algo se repita.
+- Bug encontrado durante ese mismo arreglo: la primera versión usaba `categoryId.hashCode` (vía `Object.hash`) como semilla del mazo. El VM de Dart randomiza `Object.hash`/`String.hashCode` por proceso (mitigación anti hash-flooding), así que el orden del mazo cambiaba en cada reinicio de la app, rompiendo la garantía de "mismo seed, mismo puzzle" del motor. Corregido usando aritmética simple sobre enteros estables (mismo patrón que ya usaba `_shuffledCategoriesForCycle`).
+- La pantalla de Mundos desbordaba (`RenderFlex overflow`) en pantallas más chicas una vez agregado el selector de categorías: el header no scrolleaba junto con la lista. Ahora todo vive en un único `ListView.builder` (construcción perezosa intacta).
+
+### Added
+- Selector libre de categoría en la pantalla de Mundos: 16 chips (uno por categoría) que saltan directo a esa categoría sin depender del progreso secuencial de desbloqueo.
+- Golden test para la pantalla de Mundos con el nuevo selector.
+- Tests de dominio que fijan la propiedad de no-repetición y la reshuffle por ciclo.
+
 ## [1.1.0+7] - 2026-08-10
 ### Fixed
 - `UpdateChecker.isNewer` ahora compara también el build number, no solo major.minor.patch. Antes, dos releases con la misma versión "1.1.0" pero distinto build (que es exactamente lo que produce `build_release.ps1` por defecto) se consideraban iguales y el chequeo de actualizaciones nunca notificaba nada.

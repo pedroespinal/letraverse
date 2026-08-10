@@ -98,4 +98,16 @@ void main() {
 
     await unmount(tester);
   }, tags: 'golden');
+
+  testWidgets('worlds screen with the free category picker matches golden', (tester) async {
+    await pumpApp(tester);
+
+    await tester.tap(find.byIcon(Icons.public_outlined));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+
+    await expectLater(find.byType(LetraverseApp), matchesGoldenFile('golden_files/worlds_screen.png'));
+
+    await unmount(tester);
+  }, tags: 'golden');
 }
