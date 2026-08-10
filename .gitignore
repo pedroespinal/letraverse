@@ -46,3 +46,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Local archive of every versioned release build (scripts/build_release.ps1).
+# Not pushed to git -- APK/AAB are large binaries and every tagged version
+# already lives, canonically, as a GitHub Release asset. This folder is
+# just a convenient local copy.
+/releases/

@@ -75,10 +75,15 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
+Write-Step "6/6 Archivando release versionado"
+$releaseDir = Join-Path $root "releases\v$maj.$min.$pat+$build"
+New-Item -ItemType Directory -Force -Path $releaseDir | Out-Null
+Copy-Item "build\app\outputs\flutter-apk\app-release.apk" (Join-Path $releaseDir "letraverse-v$maj.$min.$pat+$build.apk") -Force
+Copy-Item "build\app\outputs\bundle\release\app-release.aab" (Join-Path $releaseDir "letraverse-v$maj.$min.$pat+$build.aab") -Force
+
 Write-Host ""
 Write-Host "Listo. Version $newVersion compilada y firmada." -ForegroundColor Green
-Write-Host "APK:    build\app\outputs\flutter-apk\app-release.apk"
-Write-Host "AAB:    build\app\outputs\bundle\release\app-release.aab"
+Write-Host "Archivo versionado en: $releaseDir"
 Write-Host ""
 Write-Host "Siguiente paso sugerido:"
 Write-Host "  git add pubspec.yaml && git commit -m 'chore: bump version to $newVersion'"
