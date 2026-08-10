@@ -30,7 +30,7 @@ class UpdateChecker {
       if (tag == null || tag.isEmpty) return null;
 
       final packageInfo = await PackageInfo.fromPlatform();
-      if (!isNewer(tag, packageInfo.version)) return null;
+      if (!isNewer(tag, packageInfo.version, packageInfo.buildNumber)) return null;
 
       String? apkUrl;
       for (final asset in (json['assets'] as List<dynamic>? ?? const [])) {
@@ -51,21 +51,41 @@ class UpdateChecker {
     }
   }
 
+  /// Compares `tag` (a GitHub release tag, e.g. "v1.1.0+6") against the
+  /// installed `currentVersion`/`currentBuildNumber` (from PackageInfo).
+  /// Major.minor.patch is compared first; if those tie, the build number
+  /// breaks the tie. That build-number fallback matters because
+  /// scripts/build_release.ps1 bumps only the build number by default —
+  /// most releases share the same major.minor.patch, so without it this
+  /// check would never notice a new build.
   @visibleForTesting
-  bool isNewer(String tag, String currentVersion) {
+  bool isNewer(String tag, String currentVersion, String currentBuildNumber) {
     final tagVersion = tag.startsWith('v') ? tag.substring(1) : tag;
-    final incoming = parseSemver(tagVersion);
-    final current = parseSemver(currentVersion);
+    final incoming = parseVersion(tagVersion);
+    final current = parseVersion('$currentVersion+$currentBuildNumber');
     for (var i = 0; i < 3; i++) {
-      if (incoming[i] != current[i]) return incoming[i] > current[i];
+      if (incoming.semver[i] != current.semver[i]) {
+        return incoming.semver[i] > current.semver[i];
+      }
     }
-    return false;
+    return incoming.build > current.build;
   }
 
   @visibleForTesting
   List<int> parseSemver(String v) {
     final parts = v.split('.');
     return List.generate(3, (i) => i < parts.length ? (int.tryParse(parts[i]) ?? 0) : 0);
+  }
+
+  /// Splits a `MAJOR.MINOR.PATCH+BUILD` string (the "+BUILD" suffix is
+  /// optional and defaults to 0) the same way pubspec.yaml's `version:`
+  /// field is formatted.
+  @visibleForTesting
+  ({List<int> semver, int build}) parseVersion(String v) {
+    final parts = v.split('+');
+    final semver = parseSemver(parts[0]);
+    final build = parts.length > 1 ? (int.tryParse(parts[1]) ?? 0) : 0;
+    return (semver: semver, build: build);
   }
 }
 

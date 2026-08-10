@@ -87,4 +87,9 @@ Write-Host "Archivo versionado en: $releaseDir"
 Write-Host ""
 Write-Host "Siguiente paso sugerido:"
 Write-Host "  git add pubspec.yaml && git commit -m 'chore: bump version to $newVersion'"
-Write-Host "  git tag v$maj.$min.$pat && git push origin main --tags"
+Write-Host "  git tag v$maj.$min.$pat+$build && git push origin main --tags"
+Write-Host ""
+Write-Host "El tag debe incluir '+$build': el chequeo de actualizaciones en la app" -ForegroundColor Yellow
+Write-Host "compara major.minor.patch Y build number (UpdateChecker.isNewer). Un tag" -ForegroundColor Yellow
+Write-Host "'v$maj.$min.$pat' sin el build nunca notificaria este release a quien ya" -ForegroundColor Yellow
+Write-Host "tenga instalada esa misma version." -ForegroundColor Yellow

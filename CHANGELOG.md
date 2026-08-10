@@ -2,6 +2,11 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/). Versionado: `MAJOR.MINOR.PATCH+BUILD`.
 
+## [1.1.0+7] - 2026-08-10
+### Fixed
+- `UpdateChecker.isNewer` ahora compara también el build number, no solo major.minor.patch. Antes, dos releases con la misma versión "1.1.0" pero distinto build (que es exactamente lo que produce `build_release.ps1` por defecto) se consideraban iguales y el chequeo de actualizaciones nunca notificaba nada.
+- `scripts/build_release.ps1` ahora sugiere taguear con el build number incluido (`v$maj.$min.$pat+$build`), ya que un tag sin build nunca activaría el aviso de "hay una actualización" para quien ya tenga esa misma versión instalada.
+
 ## [1.1.0+6] - 2026-08-10
 ### Added
 - Tests de `PlayController` (`test/features/play_controller_test.dart`): estado inicial, reanudar progreso, cargar puzzle, encontrar palabras (directo/invertido/sin match), completar nivel con stats+progreso, avanzar de nivel, desbloqueo de mundo nuevo, salto directo a nivel.
