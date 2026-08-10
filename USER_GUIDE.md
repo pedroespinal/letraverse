@@ -1,4 +1,4 @@
-# Guía de Usuario / User Guide — HiddenWords
+# Guía de Usuario / User Guide — Letraverse
 
 ## Español
 

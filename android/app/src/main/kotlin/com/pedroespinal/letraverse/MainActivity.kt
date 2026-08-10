@@ -1,4 +1,4 @@
-package com.pedroespinal.hiddenwords
+package com.pedroespinal.letraverse
 
 import io.flutter.embedding.android.FlutterActivity
 

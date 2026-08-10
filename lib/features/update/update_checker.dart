@@ -16,7 +16,7 @@ class UpdateInfo {
 /// must never crash or block the app, especially before the repo exists.
 class UpdateChecker {
   static const String owner = 'pedroespinal';
-  static const String repo = 'hiddenwords';
+  static const String repo = 'letraverse';
   static const String _apiUrl = 'https://api.github.com/repos/$owner/$repo/releases/latest';
 
   Future<UpdateInfo?> checkForUpdate() async {

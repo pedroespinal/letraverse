@@ -1,7 +1,7 @@
 {
   "@@locale": "es",
 
-  "appTitle": "HiddenWords",
+  "appTitle": "Letraverse",
   "appTagline": "Sopa de Letras Infinita",
 
   "navPlay": "Jugar",
@@ -119,7 +119,7 @@
   "settingsResetProgressConfirm": "¿Seguro que quieres borrar todo tu progreso? Esta acción no se puede deshacer.",
 
   "updateAvailableTitle": "Actualización disponible",
-  "updateAvailableBody": "Hay una nueva versión ({version}) de HiddenWords disponible.",
+  "updateAvailableBody": "Hay una nueva versión ({version}) de Letraverse disponible.",
   "@updateAvailableBody": {
     "placeholders": { "version": {"type": "String"} }
   },

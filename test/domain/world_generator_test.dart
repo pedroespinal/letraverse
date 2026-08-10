@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddenwords/domain/models/world.dart';
-import 'package:hiddenwords/domain/word_bank_repository.dart';
-import 'package:hiddenwords/domain/world_generator.dart';
+import 'package:letraverse/domain/models/world.dart';
+import 'package:letraverse/domain/word_bank_repository.dart';
+import 'package:letraverse/domain/world_generator.dart';
 
 void main() {
   late WordBankRepository repo;

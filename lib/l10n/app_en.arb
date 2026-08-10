@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
 
-  "appTitle": "HiddenWords",
+  "appTitle": "Letraverse",
   "appTagline": "Infinite Word Search",
 
   "navPlay": "Play",
@@ -119,7 +119,7 @@
   "settingsResetProgressConfirm": "Are you sure you want to erase all your progress? This cannot be undone.",
 
   "updateAvailableTitle": "Update available",
-  "updateAvailableBody": "A new version ({version}) of HiddenWords is available.",
+  "updateAvailableBody": "A new version ({version}) of Letraverse is available.",
   "@updateAvailableBody": {
     "placeholders": { "version": {"type": "String"} }
   },

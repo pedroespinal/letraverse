@@ -30,7 +30,7 @@ Future<void> main() async {
         settingsRepositoryProvider.overrideWithValue(SettingsRepository(prefs)),
         statsRepositoryProvider.overrideWithValue(StatsRepository(statsBox)),
       ],
-      child: const HiddenWordsApp(),
+      child: const LetraverseApp(),
     ),
   );
 }

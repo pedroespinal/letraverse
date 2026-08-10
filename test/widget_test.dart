@@ -7,14 +7,14 @@ import 'package:hive/hive.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:hiddenwords/app.dart';
-import 'package:hiddenwords/core/providers.dart';
-import 'package:hiddenwords/data/progress_repository.dart';
-import 'package:hiddenwords/data/settings_repository.dart';
-import 'package:hiddenwords/data/stats_repository.dart';
-import 'package:hiddenwords/domain/word_bank_repository.dart';
-import 'package:hiddenwords/features/play/widgets/letter_grid.dart';
-import 'package:hiddenwords/widgets/app_footer.dart';
+import 'package:letraverse/app.dart';
+import 'package:letraverse/core/providers.dart';
+import 'package:letraverse/data/progress_repository.dart';
+import 'package:letraverse/data/settings_repository.dart';
+import 'package:letraverse/data/stats_repository.dart';
+import 'package:letraverse/domain/word_bank_repository.dart';
+import 'package:letraverse/features/play/widgets/letter_grid.dart';
+import 'package:letraverse/widgets/app_footer.dart';
 
 void main() {
   // Loaded once and reused: the word banks are static asset data, so every
@@ -36,8 +36,8 @@ void main() {
     // PackageInfo.fromPlatform() platform-channel call -- mounts on the
     // very first frame even though Play is the visible tab.
     PackageInfo.setMockInitialValues(
-      appName: 'HiddenWords',
-      packageName: 'com.pedroespinal.hiddenwords',
+      appName: 'Letraverse',
+      packageName: 'com.pedroespinal.letraverse',
       version: '1.0.0',
       buildNumber: '1',
       buildSignature: '',
@@ -74,7 +74,7 @@ void main() {
           statsRepositoryProvider.overrideWithValue(StatsRepository(statsBox)),
           autoUpdateCheckEnabledProvider.overrideWithValue(false),
         ],
-        child: const HiddenWordsApp(),
+        child: const LetraverseApp(),
       ),
     );
     await tester.pump();

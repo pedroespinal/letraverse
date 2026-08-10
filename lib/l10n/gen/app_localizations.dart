@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In es, this message translates to:
-  /// **'HiddenWords'**
+  /// **'Letraverse'**
   String get appTitle;
 
   /// No description provided for @appTagline.
@@ -557,7 +557,7 @@ abstract class AppLocalizations {
   /// No description provided for @updateAvailableBody.
   ///
   /// In es, this message translates to:
-  /// **'Hay una nueva versión ({version}) de HiddenWords disponible.'**
+  /// **'Hay una nueva versión ({version}) de Letraverse disponible.'**
   String updateAvailableBody(String version);
 
   /// No description provided for @updateDownloadInstall.

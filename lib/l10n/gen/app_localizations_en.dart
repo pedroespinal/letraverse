@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'HiddenWords';
+  String get appTitle => 'Letraverse';
 
   @override
   String get appTagline => 'Infinite Word Search';
@@ -267,7 +267,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String updateAvailableBody(String version) {
-    return 'A new version ($version) of HiddenWords is available.';
+    return 'A new version ($version) of Letraverse is available.';
   }
 
   @override

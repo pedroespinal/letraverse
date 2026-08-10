@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  Audits, versions, and builds a HiddenWords release. Never skips the audit:
+  Audits, versions, and builds a Letraverse release. Never skips the audit:
   if analyze or test fails, nothing is compiled.
 
 .PARAMETER Major

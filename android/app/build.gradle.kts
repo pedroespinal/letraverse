@@ -16,7 +16,7 @@ if (hasReleaseSigning) {
 }
 
 android {
-    namespace = "com.pedroespinal.hiddenwords"
+    namespace = "com.pedroespinal.letraverse"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -30,7 +30,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.pedroespinal.hiddenwords"
+        applicationId = "com.pedroespinal.letraverse"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

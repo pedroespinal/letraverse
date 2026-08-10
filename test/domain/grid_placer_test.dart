@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddenwords/domain/grid_placer.dart';
-import 'package:hiddenwords/domain/models/grid_direction.dart';
+import 'package:letraverse/domain/grid_placer.dart';
+import 'package:letraverse/domain/models/grid_direction.dart';
 
 void main() {
   const placer = GridPlacer();

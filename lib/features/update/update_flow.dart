@@ -84,7 +84,7 @@ Future<void> _downloadAndInstall(BuildContext context, AppLocalizations l10n, St
 
   try {
     final dir = await getTemporaryDirectory();
-    final filePath = '${dir.path}/hiddenwords_update.apk';
+    final filePath = '${dir.path}/letraverse_update.apk';
     await Dio().download(apkUrl, filePath);
     if (!context.mounted) return;
     Navigator.of(context, rootNavigator: true).pop();

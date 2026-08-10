@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 
-import 'package:hiddenwords/data/stats_repository.dart';
+import 'package:letraverse/data/stats_repository.dart';
 
 void main() {
   Future<StatsRepository> makeRepo({DateTime Function()? now}) async {

@@ -1,4 +1,4 @@
-# HiddenWords — Sopa de Letras Infinita
+# Letraverse — Sopa de Letras Infinita
 
 Sopa de letras bilingüe (Español/English) para Android e iOS con un motor procedural que genera mundos temáticos nuevos automáticamente, sin conexión ni costo por generación. / A bilingual (Spanish/English) word-search game for Android and iOS with a procedural engine that generates new themed worlds automatically, offline and at no per-generation cost.
 

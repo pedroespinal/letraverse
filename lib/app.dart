@@ -7,14 +7,14 @@ import 'core/theme.dart';
 import 'features/update/update_flow.dart';
 import 'l10n/gen/app_localizations.dart';
 
-class HiddenWordsApp extends ConsumerStatefulWidget {
-  const HiddenWordsApp({super.key});
+class LetraverseApp extends ConsumerStatefulWidget {
+  const LetraverseApp({super.key});
 
   @override
-  ConsumerState<HiddenWordsApp> createState() => _HiddenWordsAppState();
+  ConsumerState<LetraverseApp> createState() => _LetraverseAppState();
 }
 
-class _HiddenWordsAppState extends ConsumerState<HiddenWordsApp> {
+class _LetraverseAppState extends ConsumerState<LetraverseApp> {
   bool _checkedForUpdate = false;
 
   @override
@@ -24,7 +24,7 @@ class _HiddenWordsAppState extends ConsumerState<HiddenWordsApp> {
     final router = ref.watch(appRouterProvider);
 
     return MaterialApp.router(
-      onGenerateTitle: (context) => AppLocalizations.of(context)?.appTitle ?? 'HiddenWords',
+      onGenerateTitle: (context) => AppLocalizations.of(context)?.appTitle ?? 'Letraverse',
       debugShowCheckedModeBanner: false,
       themeMode: themeMode,
       theme: AppTheme.light(),
