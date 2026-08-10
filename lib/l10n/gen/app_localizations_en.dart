@@ -231,6 +231,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsCheckUpdates => 'Check for updates';
 
   @override
+  String get settingsPrivacyPolicy => 'Privacy policy';
+
+  @override
   String get statsTitle => 'Statistics';
 
   @override

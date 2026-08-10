@@ -65,7 +65,7 @@ flutter pub get
 flutter run
 ```
 
-See the full user guide in [`USER_GUIDE.md`](USER_GUIDE.md).
+See the full user guide in [`USER_GUIDE.md`](USER_GUIDE.md) and the [`PRIVACY_POLICY.md`](PRIVACY_POLICY.md) (the app collects no personal data — everything is stored on-device).
 
 ---
 

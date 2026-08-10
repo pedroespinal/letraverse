@@ -494,6 +494,12 @@ abstract class AppLocalizations {
   /// **'Buscar actualizaciones'**
   String get settingsCheckUpdates;
 
+  /// No description provided for @settingsPrivacyPolicy.
+  ///
+  /// In es, this message translates to:
+  /// **'Política de privacidad'**
+  String get settingsPrivacyPolicy;
+
   /// No description provided for @statsTitle.
   ///
   /// In es, this message translates to:

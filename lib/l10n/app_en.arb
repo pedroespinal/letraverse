@@ -100,6 +100,7 @@
     "placeholders": { "date": {"type": "String"} }
   },
   "settingsCheckUpdates": "Check for updates",
+  "settingsPrivacyPolicy": "Privacy policy",
 
   "statsTitle": "Statistics",
   "statsWordsFound": "Words found",

@@ -231,6 +231,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsCheckUpdates => 'Buscar actualizaciones';
 
   @override
+  String get settingsPrivacyPolicy => 'Política de privacidad';
+
+  @override
   String get statsTitle => 'Estadísticas';
 
   @override

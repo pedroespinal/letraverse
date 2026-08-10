@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/app_genesis.dart';
 import '../../core/date_format.dart';
@@ -7,6 +8,8 @@ import '../../core/package_info_provider.dart';
 import '../../core/providers.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../update/update_flow.dart';
+
+const _privacyPolicyUrl = 'https://github.com/pedroespinal/letraverse/blob/main/PRIVACY_POLICY.md';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -112,6 +115,21 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(l10n.settingsAboutGenesis(formatLongDate(kAppGenesisUtc, langCode))),
+                const SizedBox(height: 4),
+                InkWell(
+                  onTap: () => launchUrl(Uri.parse(_privacyPolicyUrl), mode: LaunchMode.externalApplication),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Text(
+                      l10n.settingsPrivacyPolicy,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
