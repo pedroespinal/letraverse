@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:meta/meta.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class UpdateInfo {
@@ -29,7 +30,7 @@ class UpdateChecker {
       if (tag == null || tag.isEmpty) return null;
 
       final packageInfo = await PackageInfo.fromPlatform();
-      if (!_isNewer(tag, packageInfo.version)) return null;
+      if (!isNewer(tag, packageInfo.version)) return null;
 
       String? apkUrl;
       for (final asset in (json['assets'] as List<dynamic>? ?? const [])) {
@@ -50,17 +51,19 @@ class UpdateChecker {
     }
   }
 
-  bool _isNewer(String tag, String currentVersion) {
+  @visibleForTesting
+  bool isNewer(String tag, String currentVersion) {
     final tagVersion = tag.startsWith('v') ? tag.substring(1) : tag;
-    final incoming = _parseSemver(tagVersion);
-    final current = _parseSemver(currentVersion);
+    final incoming = parseSemver(tagVersion);
+    final current = parseSemver(currentVersion);
     for (var i = 0; i < 3; i++) {
       if (incoming[i] != current[i]) return incoming[i] > current[i];
     }
     return false;
   }
 
-  List<int> _parseSemver(String v) {
+  @visibleForTesting
+  List<int> parseSemver(String v) {
     final parts = v.split('.');
     return List.generate(3, (i) => i < parts.length ? (int.tryParse(parts[i]) ?? 0) : 0);
   }

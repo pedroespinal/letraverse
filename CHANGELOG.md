@@ -2,6 +2,17 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/). Versionado: `MAJOR.MINOR.PATCH+BUILD`.
 
+## [1.1.0+6] - 2026-08-10
+### Added
+- Tests de `PlayController` (`test/features/play_controller_test.dart`): estado inicial, reanudar progreso, cargar puzzle, encontrar palabras (directo/invertido/sin match), completar nivel con stats+progreso, avanzar de nivel, desbloqueo de mundo nuevo, salto directo a nivel.
+- Tests de `UpdateChecker` (`test/features/update_checker_test.dart`) para la comparación de versiones semver contra GitHub Releases.
+
+### Changed
+- `UpdateChecker._isNewer`/`_parseSemver` pasan a ser `isNewer`/`parseSemver` con `@visibleForTesting`, para poder testearlos directamente.
+
+### Removed
+- Dependencia `integration_test` (declarada pero nunca usada).
+
 ## [1.1.0+5] - 2026-08-10
 ### Added
 - Golden tests (`test/golden/`) para la pantalla de juego y la de ajustes/estadísticas, como red de seguridad ante regresiones visuales. Corren como gate obligatorio en `scripts/build_release.ps1` (máquina de build canónica); excluidos del workflow de GitHub Actions vía el tag `golden`, ya que esos runners no garantizan rasterizado idéntico al de la máquina local.
